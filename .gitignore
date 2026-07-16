@@ -1,0 +1,12 @@
+# Local and unrelated working artifacts
+.agents/
+assets/
+hatch-pet-nailong/
+skills/
+work/
+guizang-ppt-skill-main.zip
+styles.css
+
+# OS/editor files
+.DS_Store
+Thumbs.db
