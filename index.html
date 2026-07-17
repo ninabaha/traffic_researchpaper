@@ -6,179 +6,38 @@
   <meta name="description" content="交通运输前沿研究周报：累计收录并筛选近期在线发表论文。">
   <title>交通前沿周报｜累计论文库</title>
   <style>
-    :root {
-      --paper: #fcfcfa;
-      --ink: #101827;
-      --muted: #647083;
-      --line: #aeb7c4;
-      --soft-line: #d8dde5;
-      --accent: #002fa7;
-      --accent-soft: #e8eefc;
-      --gold: #e8ad00;
-    }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      color: var(--ink);
-      background: var(--paper);
-      font-family: Inter, "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
-    }
-    button, input, select { font: inherit; }
-    .shell { width: min(1280px, calc(100% - 48px)); margin: 26px auto 72px; }
-    .top-line, .section-line { height: 1px; background: var(--line); }
-    .masthead { padding: 32px 0 30px; text-align: center; }
-    .eyebrow {
-      margin: 0 0 8px;
-      color: var(--accent);
-      font-size: 12px;
-      font-weight: 750;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-    }
-    h1 { margin: 0; font-size: clamp(34px, 4vw, 54px); letter-spacing: -.055em; line-height: 1; }
-    .subtitle { margin: 13px auto 0; max-width: 520px; color: var(--muted); font-size: 15px; line-height: 1.65; }
-    .toolbar {
-      display: grid;
-      grid-template-columns: minmax(220px, 1fr) auto;
-      gap: 14px;
-      align-items: center;
-      padding: 25px 0 20px;
-      border-bottom: 1px solid var(--line);
-    }
-    .search-wrap { position: relative; }
-    .search-wrap::before { content: "⌕"; position: absolute; left: 19px; top: 11px; color: var(--muted); font-size: 25px; line-height: 1; }
-    #search {
-      width: 100%; height: 56px; padding: 0 18px 0 54px;
-      border: 1px solid var(--line); border-radius: 14px; outline: none;
-      color: var(--ink); background: #fff; font-size: 17px;
-    }
-    #search:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
-    .controls { display: flex; gap: 9px; align-items: center; }
-    select, .sort {
-      height: 40px; border: 1px solid var(--line); border-radius: 9px;
-      padding: 0 12px; color: #465166; background: #fff; cursor: pointer;
-    }
-    .sort { padding: 0 13px; }
-    .sort.active { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
-    .result-bar { display: flex; justify-content: space-between; gap: 16px; padding: 20px 0 16px; color: var(--muted); font-size: 14px; }
-    .result-bar strong { color: var(--ink); }
-    .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; align-items: start; }
-    .paper-card {
-      display: flex; flex-direction: column; min-height: 330px;
-      overflow: hidden; border: 1px solid var(--line); border-radius: 14px; background: #fff;
-      transition: border-color .16s ease, transform .16s ease;
-    }
-    .paper-card:hover { border-color: var(--accent); transform: translateY(-2px); }
-    .card-top { display: flex; justify-content: space-between; gap: 12px; align-items: center; padding: 15px 17px 13px; border-bottom: 1px solid var(--line); }
-    .tag { color: var(--accent); font-size: 12px; font-weight: 750; letter-spacing: .045em; }
-    .score { color: #495569; font-size: 13px; white-space: nowrap; }
-    .score b { color: var(--gold); margin-right: 4px; }
-    .card-body { display: flex; flex: 1; flex-direction: column; padding: 16px 17px 14px; }
-    h2 { margin: 0; font-size: 19px; line-height: 1.25; letter-spacing: -.025em; }
-    .authors { display: flex; align-items: center; gap: 8px; margin: 13px 0 12px; color: var(--muted); font-size: 13px; }
-    .avatar { display: grid; width: 23px; height: 23px; place-items: center; border-radius: 50%; color: #fff; background: var(--accent); font-size: 9px; font-weight: 700; }
-    .summary { margin: 0; color: #566174; font-size: 14px; line-height: 1.58; }
-    .research-notes { display: grid; gap: 8px; margin: 15px 0 0; }
-    .research-note { display: grid; grid-template-columns: 42px 1fr; gap: 8px; color: #445064; font-size: 12px; line-height: 1.48; }
-    .research-note b { color: var(--accent); font-size: 11px; letter-spacing: .04em; }
-    .journal { margin: auto 0 0; padding-top: 15px; color: #4d5970; font-size: 12px; font-weight: 650; }
-    .card-foot { display: flex; justify-content: space-between; gap: 12px; padding: 11px 17px; border-top: 1px solid var(--soft-line); color: var(--muted); font-size: 12px; }
-    .card-foot a { color: var(--accent); text-decoration: none; font-weight: 700; }
-    .empty { display: none; grid-column: 1 / -1; padding: 50px 0; color: var(--muted); text-align: center; border: 1px dashed var(--line); }
-    .about { display: grid; grid-template-columns: 1.2fr .8fr; gap: 36px; margin-top: 52px; padding-top: 22px; border-top: 1px solid var(--line); }
-    .about h3 { margin: 0 0 8px; font-size: 18px; }
-    .about p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.7; }
-    .count { color: var(--accent); font-weight: 750; }
-    @media (max-width: 900px) { .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } .toolbar { grid-template-columns: 1fr; } .controls { flex-wrap: wrap; } }
-    @media (max-width: 600px) { .shell { width: min(100% - 28px, 1280px); margin-top: 14px; } .masthead { padding: 27px 0 22px; } .cards { grid-template-columns: 1fr; } .about { grid-template-columns: 1fr; gap: 16px; } .result-bar { display: block; } .result-bar span { display: block; margin-top: 5px; } }
+    :root { --paper:#fcfcfa; --ink:#101827; --muted:#647083; --line:#aeb7c4; --soft-line:#d8dde5; --accent:#002fa7; --accent-soft:#e8eefc; --gold:#e8ad00; }
+    * { box-sizing:border-box; } html { scroll-behavior:smooth; } body { margin:0; color:var(--ink); background:var(--paper); font-family:Inter,"Helvetica Neue",Arial,"PingFang SC","Microsoft YaHei",sans-serif; }
+    button,input,select { font:inherit; } .shell { width:min(1280px,calc(100% - 48px)); margin:26px auto 72px; } .top-line,.section-line { height:1px; background:var(--line); }
+    .masthead { padding:32px 0 30px; text-align:center; } .eyebrow { margin:0 0 8px; color:var(--accent); font-size:12px; font-weight:750; letter-spacing:.12em; text-transform:uppercase; } h1 { margin:0; font-size:clamp(34px,4vw,54px); letter-spacing:-.055em; line-height:1; } .subtitle { margin:13px auto 0; max-width:590px; color:var(--muted); font-size:15px; line-height:1.65; }
+    .toolbar { display:grid; grid-template-columns:minmax(220px,1fr) auto; gap:14px; align-items:center; padding:25px 0 20px; border-bottom:1px solid var(--line); } .search-wrap { position:relative; } .search-wrap::before { content:"⌕"; position:absolute; left:19px; top:11px; color:var(--muted); font-size:25px; line-height:1; } #search { width:100%; height:56px; padding:0 18px 0 54px; border:1px solid var(--line); border-radius:14px; outline:none; color:var(--ink); background:#fff; font-size:17px; } #search:focus { border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-soft); } .controls { display:flex; gap:9px; align-items:center; } select,.sort { height:40px; border:1px solid var(--line); border-radius:9px; padding:0 12px; color:#465166; background:#fff; cursor:pointer; } .sort { padding:0 13px; } .sort.active { color:var(--accent); border-color:var(--accent); background:var(--accent-soft); }
+    .result-bar { display:flex; justify-content:space-between; gap:16px; padding:20px 0 16px; color:var(--muted); font-size:14px; } .result-bar strong { color:var(--ink); } .cards { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; align-items:start; } .paper-card { display:flex; flex-direction:column; min-height:330px; overflow:hidden; border:1px solid var(--line); border-radius:14px; background:#fff; transition:border-color .16s ease,transform .16s ease; } .paper-card:hover { border-color:var(--accent); transform:translateY(-2px); } .card-top { display:flex; justify-content:space-between; gap:12px; align-items:center; padding:15px 17px 13px; border-bottom:1px solid var(--line); } .tag { color:var(--accent); font-size:12px; font-weight:750; letter-spacing:.045em; } .score { color:#495569; font-size:13px; white-space:nowrap; } .score b { color:var(--gold); margin-right:4px; } .card-body { display:flex; flex:1; flex-direction:column; padding:16px 17px 14px; } h2 { margin:0; font-size:19px; line-height:1.25; letter-spacing:-.025em; } .authors { display:flex; align-items:center; gap:8px; margin:13px 0 12px; color:var(--muted); font-size:13px; } .avatar { display:grid; width:23px; height:23px; place-items:center; border-radius:50%; color:#fff; background:var(--accent); font-size:9px; font-weight:700; } .summary { margin:0; color:#566174; font-size:14px; line-height:1.58; } .research-notes { display:grid; gap:8px; margin:15px 0 0; } .research-note { display:grid; grid-template-columns:42px 1fr; gap:8px; color:#445064; font-size:12px; line-height:1.48; } .research-note b { color:var(--accent); font-size:11px; letter-spacing:.04em; } .journal { margin:auto 0 0; padding-top:15px; color:#4d5970; font-size:12px; font-weight:650; } .card-foot { display:flex; justify-content:space-between; gap:12px; padding:11px 17px; border-top:1px solid var(--soft-line); color:var(--muted); font-size:12px; } .card-foot a { color:var(--accent); text-decoration:none; font-weight:700; } .empty { display:none; grid-column:1 / -1; padding:50px 0; color:var(--muted); text-align:center; border:1px dashed var(--line); } .about { display:grid; grid-template-columns:1.2fr .8fr; gap:36px; margin-top:52px; padding-top:22px; border-top:1px solid var(--line); } .about h3 { margin:0 0 8px; font-size:18px; } .about p { margin:0; color:var(--muted); font-size:14px; line-height:1.7; } .count { color:var(--accent); font-weight:750; }
+    @media (max-width:900px) { .cards { grid-template-columns:repeat(2,minmax(0,1fr)); } .toolbar { grid-template-columns:1fr; } .controls { flex-wrap:wrap; } } @media (max-width:600px) { .shell { width:min(100% - 28px,1280px); margin-top:14px; } .masthead { padding:27px 0 22px; } .cards { grid-template-columns:1fr; } .about { grid-template-columns:1fr; gap:16px; } .result-bar { display:block; } .result-bar span { display:block; margin-top:5px; } }
   </style>
 </head>
 <body>
   <main class="shell">
     <div class="top-line"></div>
-    <header class="masthead">
-      <p class="eyebrow">Transport research · rolling archive</p>
-      <h1>浏览交通前沿周报</h1>
-      <p class="subtitle">单页累计收录近期在线发表论文；每张卡片同时保留文献来源与首次引入周报的时间。</p>
-    </header>
+    <header class="masthead"><p class="eyebrow">Transport research · rolling archive</p><h1>交通前沿周报</h1><p class="subtitle">单页累计收录近期在线发表论文；每张卡片保留可核验来源与首次引入周报的时间。</p></header>
     <div class="section-line"></div>
-
-    <section class="toolbar" aria-label="论文筛选">
-      <label class="search-wrap"><input id="search" type="search" placeholder="搜索主题、论文、作者或期刊" aria-label="搜索论文"></label>
-      <div class="controls">
-        <select id="journal" aria-label="筛选期刊"><option value="">全部期刊</option><option>Transport Policy</option><option>Sustainable Cities and Society</option><option>Smart Agricultural Technology</option><option>Computers &amp; Industrial Engineering</option></select>
-        <select id="introduced" aria-label="筛选引入时间"><option value="">引入周报：全部</option><option value="2026-07-16">2026-07-16</option></select>
-        <button class="sort active" data-sort="newest" type="button">◷ 最新</button>
-        <button class="sort" data-sort="score" type="button">★ 相关度</button>
-      </div>
-    </section>
-
-    <div class="result-bar"><strong id="result-count">5 篇论文</strong><span>本次引入：2026-07-16 · 覆盖 2026-07-09 至 07-16</span></div>
-
+    <section class="toolbar" aria-label="论文筛选"><label class="search-wrap"><input id="search" type="search" placeholder="搜索主题、论文、作者或期刊" aria-label="搜索论文"></label><div class="controls"><select id="journal" aria-label="筛选期刊"><option value="">全部期刊</option><option>Transport Policy</option><option>Sustainable Cities and Society</option><option>Smart Agricultural Technology</option><option>Computers &amp; Industrial Engineering</option><option>IET Intelligent Transport Systems</option><option>Journal of Highway and Transportation Research and Development (English Edition)</option></select><select id="introduced" aria-label="筛选引入时间"><option value="">引入周报：全部</option><option value="2026-07-16">2026-07-16</option><option value="2026-07-17">2026-07-17</option></select><button class="sort active" data-sort="newest" type="button">● 最新</button><button class="sort" data-sort="score" type="button">★ 相关度</button></div></section>
+    <div class="result-bar"><strong id="result-count">7 篇论文</strong><span>本次引入：2026-07-17 · 检索范围 2026-07-10 至 07-17</span></div>
     <section class="cards" id="cards" aria-live="polite">
-      <article class="paper-card" data-journal="Transport Policy" data-introduced="2026-07-16" data-score="5" data-date="2026-07-10" data-search="多模态公共交通 城市出行 spatial machine learning Long Cheng Zhuangbin Shi 研究问题 方法 发现">
-        <div class="card-top"><span class="tag">公共交通</span><span class="score"><b>★</b>5.0</span></div>
-        <div class="card-body"><h2>多模态公共交通能否提升城市出行吸引力？</h2><div class="authors"><span class="avatar">LC</span>Long Cheng 等</div><p class="summary">关注公交、轨道等多方式协同服务是否会让城市更容易被选择与抵达。</p><div class="research-notes"><div class="research-note"><b>问题</b><span>不同空间中的公共交通组合，如何影响出行吸引力？</span></div><div class="research-note"><b>方法</b><span>空间机器学习，识别服务供给与吸引力关系的地域差异。</span></div><div class="research-note"><b>发现</b><span>多模式整合的效应具有空间异质性，网络优化应按地区差别配置。</span></div></div><p class="journal">Transport Policy</p></div>
-        <footer class="card-foot"><span>在线：2026-07-10</span><a href="https://doi.org/10.1016/j.tranpol.2026.104299" target="_blank" rel="noreferrer">DOI ↗</a></footer>
-      </article>
-
-      <article class="paper-card" data-journal="Transport Policy" data-introduced="2026-07-16" data-score="4" data-date="2026-07-10" data-search="联运枢纽 评估 indicator selection data driven Yahua Zhang Jing Zhang 研究问题 方法 发现">
-        <div class="card-top"><span class="tag">综合枢纽</span><span class="score"><b>★</b>4.7</span></div>
-        <div class="card-body"><h2>多样化联运交通枢纽的评价方法</h2><div class="authors"><span class="avatar">YZ</span>Yahua Zhang 等</div><p class="summary">不是用一套固定指标评价所有枢纽，而是让指标随枢纽类型和功能变化。</p><div class="research-notes"><div class="research-note"><b>问题</b><span>异质化联运枢纽应如何避免“同尺量所有”的评价偏差？</span></div><div class="research-note"><b>方法</b><span>以数据驱动的机制筛选各类枢纽最有解释力的评价指标。</span></div><div class="research-note"><b>价值</b><span>帮助规划者按枢纽功能建立更适配的绩效评价体系。</span></div></div><p class="journal">Transport Policy</p></div>
-        <footer class="card-foot"><span>在线：2026-07-10</span><a href="https://doi.org/10.1016/j.tranpol.2026.104297" target="_blank" rel="noreferrer">DOI ↗</a></footer>
-      </article>
-
-      <article class="paper-card" data-journal="Sustainable Cities and Society" data-introduced="2026-07-16" data-score="5" data-date="2026-07-09" data-search="电动汽车 快充站 深度强化学习 EV charging geospatial Jae Heo Soowon Chang 研究问题 方法 发现">
-        <div class="card-top"><span class="tag">电动交通</span><span class="score"><b>★</b>5.0</span></div>
-        <div class="card-body"><h2>面向公平性的电动汽车快充站配置</h2><div class="authors"><span class="avatar">JH</span>Jae Heo、Soowon Chang</div><p class="summary">把快充站选址从单纯追求需求最大化，转向兼顾覆盖效率与社区公平。</p><div class="research-notes"><div class="research-note"><b>问题</b><span>如何减少快充资源向高需求地区过度集中？</span></div><div class="research-note"><b>方法</b><span>地理空间感知的多目标深度强化学习优化站点组合。</span></div><div class="research-note"><b>发现</b><span>可在服务效率、覆盖范围与公平性之间系统权衡。</span></div></div><p class="journal">Sustainable Cities and Society</p></div>
-        <footer class="card-foot"><span>在线：2026-07-09</span><a href="https://doi.org/10.1016/j.scs.2026.107688" target="_blank" rel="noreferrer">DOI ↗</a></footer>
-      </article>
-
-      <article class="paper-card" data-journal="Smart Agricultural Technology" data-introduced="2026-07-16" data-score="4" data-date="2026-07-09" data-search="山地果园 无人机 车辆 协同运输 mission planning Xinghan Sun Dongsheng Zhang 研究问题 方法 发现">
-        <div class="card-top"><span class="tag">低空物流</span><span class="score"><b>★</b>4.4</span></div>
-        <div class="card-body"><h2>山地果园的无人机—车辆协同运输规划</h2><div class="authors"><span class="avatar">XS</span>Xinghan Sun、Dongsheng Zhang</div><p class="summary">解决山地果园道路受限、人工转运成本高时的采后短途运输问题。</p><div class="research-notes"><div class="research-note"><b>问题</b><span>无人机和车辆如何分工，才能提高山区果品转运效率？</span></div><div class="research-note"><b>方法</b><span>联合规划任务分配、飞行/行驶路径与作业时序。</span></div><div class="research-note"><b>价值</b><span>为低空物流介入农业末端运输提供可执行的调度思路。</span></div></div><p class="journal">Smart Agricultural Technology</p></div>
-        <footer class="card-foot"><span>在线：2026-07-09</span><a href="https://doi.org/10.1016/j.atech.2026.102383" target="_blank" rel="noreferrer">DOI ↗</a></footer>
-      </article>
-
-      <article class="paper-card" data-journal="Computers &amp; Industrial Engineering" data-introduced="2026-07-16" data-score="4" data-date="2026-07-09" data-search="高速铁路 车站 重调度 站台 virtual track Jinke Gao Jing Teng 研究问题 方法 发现">
-        <div class="card-top"><span class="tag">铁路运营</span><span class="score"><b>★</b>4.6</span></div>
-        <div class="card-body"><h2>共享线路高铁站的列车重调度与站台配置</h2><div class="authors"><span class="avatar">JG</span>Jinke Gao 等</div><p class="summary">针对高铁站受扰后列车时刻与站台相互牵制、恢复困难的问题。</p><div class="research-notes"><div class="research-note"><b>问题</b><span>多方向共享线路下，如何同时重排列车和分配站台？</span></div><div class="research-note"><b>方法</b><span>先进行虚拟股道预分配，再联合优化重调度与站台配置。</span></div><div class="research-note"><b>价值</b><span>增强高铁枢纽在运行扰动后的恢复与协同能力。</span></div></div><p class="journal">Computers &amp; Industrial Engineering</p></div>
-        <footer class="card-foot"><span>在线：2026-07-09</span><a href="https://doi.org/10.1016/j.cie.2026.112242" target="_blank" rel="noreferrer">DOI ↗</a></footer>
-      </article>
+      <article class="paper-card" data-journal="IET Intelligent Transport Systems" data-introduced="2026-07-17" data-score="5" data-date="2026-07-15" data-search="市郊铁路 列车时刻表 停站 速度曲线 能源 乘客需求 Dewei Li Enhua Xu IET Intelligent Transport Systems"><div class="card-top"><span class="tag">铁路节能运营</span><span class="score"><b>★</b>5.0</span></div><div class="card-body"><h2>面向时变客流的市郊铁路时刻表、停站与速度协同优化</h2><div class="authors"><span class="avatar">DL</span>Dewei Li 等</div><p class="summary">把列车开行数量、停站、时刻与速度曲线放到同一套决策中，平衡旅客服务和能耗。</p><div class="research-notes"><div class="research-note"><b>问题</b><span>客流随时段变化时，市郊铁路如何同时缩短乘客时间并控制牵引能耗？</span></div><div class="research-note"><b>方法</b><span>联合优化列车时刻表、停站方案、连续速度曲线及开行数量。</span></div><div class="research-note"><b>发现</b><span>数值试验显示，该框架可同时降低候车时间、车内时间与能耗，并保持可接受的计算性能。</span></div></div><p class="journal">IET Intelligent Transport Systems</p></div><footer class="card-foot"><span>在线：2026-07-15 · 首次引入：2026-07-17</span><a href="https://doi.org/10.1049/itr2.70289" target="_blank" rel="noreferrer">DOI ↗</a></footer></article>
+      <article class="paper-card" data-journal="Journal of Highway and Transportation Research and Development (English Edition)" data-introduced="2026-07-17" data-score="5" data-date="2026-07-13" data-search="冻土 路面沉降 锥贯入试验 公路 路基 Bo Tian Haowu Wang pavement deformation permafrost"><div class="card-top"><span class="tag">道路基础设施韧性</span><span class="score"><b>★</b>4.9</span></div><div class="card-body"><h2>基于锥贯入试验的多年冻土区路面变形风险评估</h2><div class="authors"><span class="avatar">BT</span>Bo Tian 等</div><p class="summary">用现场锥贯入测试把浅层冻土的承载特性转化为可估算的路面沉降风险。</p><div class="research-notes"><div class="research-note"><b>问题</b><span>如何快速判断高寒多年冻土路段的承载能力与路面沉降风险？</span></div><div class="research-note"><b>方法</b><span>结合现场路面变形调查和锥贯入试验，提出以曲线包络面积比表征承载能力。</span></div><div class="research-note"><b>发现</b><span>包络面积比越大，对应冻土承载越强、路面沉降风险越低；所建经验式的决定系数超过 0.9。</span></div></div><p class="journal">Journal of Highway and Transportation Research and Development (English Edition)</p></div><footer class="card-foot"><span>在线：2026-07-13 · 首次引入：2026-07-17</span><a href="https://doi.org/10.26599/HTRD.2025.9480085" target="_blank" rel="noreferrer">DOI ↗</a></footer></article>
+      <article class="paper-card" data-journal="Transport Policy" data-introduced="2026-07-16" data-score="5" data-date="2026-07-10" data-search="多模式 公共交通 城市出行 spatial machine learning Long Cheng Zhuangbin Shi"><div class="card-top"><span class="tag">公共交通</span><span class="score"><b>★</b>5.0</span></div><div class="card-body"><h2>多模式公共交通能否提升城市出行吸引力？</h2><div class="authors"><span class="avatar">LC</span>Long Cheng 等</div><p class="summary">关注公交、轨道等多方式协同服务是否会让城市更容易被选择与抵达。</p><div class="research-notes"><div class="research-note"><b>问题</b><span>不同空间中的公共交通组合，如何影响出行吸引力？</span></div><div class="research-note"><b>方法</b><span>空间机器学习，识别服务供给与吸引力关系的地域差异。</span></div><div class="research-note"><b>发现</b><span>多模式整合效应具有空间异质性，网络优化应按地区差别配置。</span></div></div><p class="journal">Transport Policy</p></div><footer class="card-foot"><span>在线：2026-07-10 · 首次引入：2026-07-16</span><a href="https://doi.org/10.1016/j.tranpol.2026.104299" target="_blank" rel="noreferrer">DOI ↗</a></footer></article>
+      <article class="paper-card" data-journal="Transport Policy" data-introduced="2026-07-16" data-score="4" data-date="2026-07-10" data-search="联运枢纽 评价 indicator selection data driven Yahua Zhang Jing Zhang"><div class="card-top"><span class="tag">综合枢纽</span><span class="score"><b>★</b>4.7</span></div><div class="card-body"><h2>多样化联运交通枢纽的评价方法</h2><div class="authors"><span class="avatar">YZ</span>Yahua Zhang 等</div><p class="summary">不再用一套固定指标评价所有枢纽，而是让指标随枢纽类型和功能变化。</p><div class="research-notes"><div class="research-note"><b>问题</b><span>异质化联运枢纽应如何避免“一把尺量所有”的评价偏差？</span></div><div class="research-note"><b>方法</b><span>以数据驱动的机制筛选各类枢纽最有解释力的评价指标。</span></div><div class="research-note"><b>价值/启示</b><span>帮助规划者按枢纽功能建立更适配的绩效评价体系。</span></div></div><p class="journal">Transport Policy</p></div><footer class="card-foot"><span>在线：2026-07-10 · 首次引入：2026-07-16</span><a href="https://doi.org/10.1016/j.tranpol.2026.104297" target="_blank" rel="noreferrer">DOI ↗</a></footer></article>
+      <article class="paper-card" data-journal="Sustainable Cities and Society" data-introduced="2026-07-16" data-score="5" data-date="2026-07-09" data-search="电动汽车 快充站 深度强化学习 EV charging geospatial Jae Heo Soowon Chang"><div class="card-top"><span class="tag">电动交通</span><span class="score"><b>★</b>5.0</span></div><div class="card-body"><h2>面向公平性的电动汽车快充站配置</h2><div class="authors"><span class="avatar">JH</span>Jae Heo、Soowon Chang</div><p class="summary">把快充站选址从单纯追求需求最大化，转向兼顾覆盖效率与社区公平。</p><div class="research-notes"><div class="research-note"><b>问题</b><span>如何减少快充资源向高需求地区过度集中？</span></div><div class="research-note"><b>方法</b><span>地理空间感知的多目标深度强化学习优化站点组合。</span></div><div class="research-note"><b>发现</b><span>可在服务效率、覆盖范围与公平性之间系统权衡。</span></div></div><p class="journal">Sustainable Cities and Society</p></div><footer class="card-foot"><span>在线：2026-07-09 · 首次引入：2026-07-16</span><a href="https://doi.org/10.1016/j.scs.2026.107688" target="_blank" rel="noreferrer">DOI ↗</a></footer></article>
+      <article class="paper-card" data-journal="Smart Agricultural Technology" data-introduced="2026-07-16" data-score="4" data-date="2026-07-09" data-search="山地果园 无人机 车辆 协同运输 mission planning Xinghan Sun Dongsheng Zhang"><div class="card-top"><span class="tag">低空物流</span><span class="score"><b>★</b>4.4</span></div><div class="card-body"><h2>山地果园的无人机—车辆协同运输规划</h2><div class="authors"><span class="avatar">XS</span>Xinghan Sun、Dongsheng Zhang</div><p class="summary">解决山地果园道路受限、人工转运成本高时的采后短途运输问题。</p><div class="research-notes"><div class="research-note"><b>问题</b><span>无人机和车辆如何分工，才能提高山区果品转运效率？</span></div><div class="research-note"><b>方法</b><span>联合规划任务分配、飞行/行驶路径与作业时序。</span></div><div class="research-note"><b>价值/启示</b><span>为低空物流介入农业末端运输提供可执行的调度思路。</span></div></div><p class="journal">Smart Agricultural Technology</p></div><footer class="card-foot"><span>在线：2026-07-09 · 首次引入：2026-07-16</span><a href="https://doi.org/10.1016/j.atech.2026.102383" target="_blank" rel="noreferrer">DOI ↗</a></footer></article>
+      <article class="paper-card" data-journal="Computers &amp; Industrial Engineering" data-introduced="2026-07-16" data-score="4" data-date="2026-07-09" data-search="高速铁路 车站 重调度 站台 virtual track Jinke Gao Jing Teng"><div class="card-top"><span class="tag">铁路运营</span><span class="score"><b>★</b>4.6</span></div><div class="card-body"><h2>共享线路高铁站的列车重调度与站台配置</h2><div class="authors"><span class="avatar">JG</span>Jinke Gao 等</div><p class="summary">针对高铁站受扰后列车时刻与站台相互牵制、恢复困难的问题。</p><div class="research-notes"><div class="research-note"><b>问题</b><span>多方向共享线路下，如何同时重排列车和分配站台？</span></div><div class="research-note"><b>方法</b><span>先进行虚拟股道预分配，再联合优化重调度与站台配置。</span></div><div class="research-note"><b>价值/启示</b><span>增强高铁枢纽在运行扰动后的恢复与协同能力。</span></div></div><p class="journal">Computers &amp; Industrial Engineering</p></div><footer class="card-foot"><span>在线：2026-07-09 · 首次引入：2026-07-16</span><a href="https://doi.org/10.1016/j.cie.2026.112242" target="_blank" rel="noreferrer">DOI ↗</a></footer></article>
       <p class="empty" id="empty">没有与当前筛选条件匹配的论文。</p>
     </section>
-
-    <footer class="about"><div><h3>本周观察</h3><p>人工智能正从出行需求识别，延伸到充电设施公平配置、协同物流与铁路运行恢复等多尺度交通决策问题。</p></div><div><h3>累计状态</h3><p>已收录 <span class="count">5</span> 篇；页面将于每周五更新，旧内容持续保留并标注引入时间。</p></div></footer>
+    <footer class="about"><div><h3>本周观察</h3><p>本周新增研究聚焦两类更可落地的交通系统优化：一类把客流、时刻、停站和能耗协同求解；另一类用现场探测数据把冻土路面风险前移到可量化评估。</p></div><div><h3>累计状态</h3><p>已收录 <span class="count">7</span> 篇；页面每周五更新，旧内容持续保留并标注引入时间。</p></div></footer>
   </main>
   <script>
-    const cards = [...document.querySelectorAll('.paper-card')];
-    const search = document.querySelector('#search');
-    const journal = document.querySelector('#journal');
-    const introduced = document.querySelector('#introduced');
-    const count = document.querySelector('#result-count');
-    const empty = document.querySelector('#empty');
-    const cardGrid = document.querySelector('#cards');
-    let sortBy = 'newest';
-    function render() {
-      const query = search.value.trim().toLowerCase();
-      const visible = cards.filter(card => {
-        const matchesText = !query || (card.dataset.search + card.textContent).toLowerCase().includes(query);
-        return matchesText && (!journal.value || card.dataset.journal === journal.value) && (!introduced.value || card.dataset.introduced === introduced.value);
-      });
-      cards.forEach(card => card.hidden = !visible.includes(card));
-      visible.sort((a, b) => sortBy === 'score' ? Number(b.dataset.score) - Number(a.dataset.score) : b.dataset.date.localeCompare(a.dataset.date));
-      visible.forEach(card => cardGrid.insertBefore(card, empty));
-      count.textContent = `${visible.length} 篇论文`;
-      empty.style.display = visible.length ? 'none' : 'block';
-    }
-    [search, journal, introduced].forEach(control => control.addEventListener('input', render));
-    document.querySelectorAll('.sort').forEach(button => button.addEventListener('click', () => {
-      sortBy = button.dataset.sort;
-      document.querySelectorAll('.sort').forEach(item => item.classList.toggle('active', item === button));
-      render();
-    }));
-    render();
+    const cards=[...document.querySelectorAll('.paper-card')],search=document.querySelector('#search'),journal=document.querySelector('#journal'),introduced=document.querySelector('#introduced'),count=document.querySelector('#result-count'),empty=document.querySelector('#empty'),cardGrid=document.querySelector('#cards'); let sortBy='newest';
+    function render(){const query=search.value.trim().toLowerCase(),visible=cards.filter(card=>{const matchesText=!query||(card.dataset.search+card.textContent).toLowerCase().includes(query);return matchesText&&(!journal.value||card.dataset.journal===journal.value)&&(!introduced.value||card.dataset.introduced===introduced.value);});cards.forEach(card=>card.hidden=!visible.includes(card));visible.sort((a,b)=>sortBy==='score'?Number(b.dataset.score)-Number(a.dataset.score):b.dataset.date.localeCompare(a.dataset.date));visible.forEach(card=>cardGrid.insertBefore(card,empty));count.textContent=`${visible.length} 篇论文`;empty.style.display=visible.length?'none':'block';}
+    [search,journal,introduced].forEach(control=>control.addEventListener('input',render));document.querySelectorAll('.sort').forEach(button=>button.addEventListener('click',()=>{sortBy=button.dataset.sort;document.querySelectorAll('.sort').forEach(item=>item.classList.toggle('active',item===button));render();}));render();
   </script>
 </body>
 </html>
