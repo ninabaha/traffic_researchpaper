@@ -7,5 +7,6 @@
   {"doi":"10.1049/itr2.70289","english_title":"Collaborative Energy-Efficient Optimisation on Timetabling, Stop Planning and Train Speed Profile for Suburban Railway Lines Under Time-Dependent Passenger Demand","journal":"IET Intelligent Transport Systems","first_seen":"2026-07-17"},
   {"doi":"10.26599/HTRD.2025.9480085","english_title":"Pavement deformation risk assessment in permafrost regions based on cone penetration test","journal":"Journal of Highway and Transportation Research and Development (English Edition)","first_seen":"2026-07-17"},
   {"doi":"10.1016/j.fraope.2026.100720","english_title":"Adaptive Vehicle Counting Method Using YOLOv10 Integrated with BoostTrack at Symmetrical Traffic Light Intersections","journal":"Frontiers of Architectural and Civil Engineering","first_seen":"2026-07-25"},
-  {"doi":"10.26599/COMMTR.2026.9640040","english_title":"A Ship Weather Routing Framework Based on the Dual-Mode Deep Reinforcement Learning","journal":"Communications in Transportation Research","first_seen":"2026-07-25"}
+  {"doi":"10.26599/COMMTR.2026.9640040","english_title":"A Ship Weather Routing Framework Based on the Dual-Mode Deep Reinforcement Learning","journal":"Communications in Transportation Research","first_seen":"2026-07-25"},
+  {"doi":"10.1038/s41598-026-63349-7","english_title":"TrafCopAgent: synergizing reinforcement learning and multi-agent collaboration for adaptive emergency traffic control","journal":"Scientific Reports","first_seen":"2026-08-02"}
 ]
