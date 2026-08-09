@@ -1,12 +1,68 @@
 [
-  {"doi":"10.1016/j.tranpol.2026.104299","english_title":"Can Multimodal Transit Boost Urban Mobility Appeal? Evidence from Spatial Machine Learning","journal":"Transport Policy","first_seen":"2026-07-16"},
-  {"doi":"10.1016/j.tranpol.2026.104297","english_title":"Developing evaluation method for diverse intermodal transport hubs: A Data-Driven Indicator Selection Mechanism","journal":"Transport Policy","first_seen":"2026-07-16"},
-  {"doi":"10.1016/j.scs.2026.107688","english_title":"Strategic and Equitable Allocation of Electric Vehicle Fast Charging Stations using Geospatial-Aware Multi-Objective Deep Reinforcement Learning","journal":"Sustainable Cities and Society","first_seen":"2026-07-16"},
-  {"doi":"10.1016/j.atech.2026.102383","english_title":"Optimizing Fruit Transportation in Mountainous Orchards: A Mission Planning Method Using Cooperative Drone-Vehicle Systems","journal":"Smart Agricultural Technology","first_seen":"2026-07-16"},
-  {"doi":"10.1016/j.cie.2026.112242","english_title":"Train rescheduling and platforming in multi-direction shared track high-speed railway stations based on virtual track pre-allocation","journal":"Computers & Industrial Engineering","first_seen":"2026-07-16"},
-  {"doi":"10.1049/itr2.70289","english_title":"Collaborative Energy-Efficient Optimisation on Timetabling, Stop Planning and Train Speed Profile for Suburban Railway Lines Under Time-Dependent Passenger Demand","journal":"IET Intelligent Transport Systems","first_seen":"2026-07-17"},
-  {"doi":"10.26599/HTRD.2025.9480085","english_title":"Pavement deformation risk assessment in permafrost regions based on cone penetration test","journal":"Journal of Highway and Transportation Research and Development (English Edition)","first_seen":"2026-07-17"},
-  {"doi":"10.1016/j.fraope.2026.100720","english_title":"Adaptive Vehicle Counting Method Using YOLOv10 Integrated with BoostTrack at Symmetrical Traffic Light Intersections","journal":"Frontiers of Architectural and Civil Engineering","first_seen":"2026-07-25"},
-  {"doi":"10.26599/COMMTR.2026.9640040","english_title":"A Ship Weather Routing Framework Based on the Dual-Mode Deep Reinforcement Learning","journal":"Communications in Transportation Research","first_seen":"2026-07-25"},
-  {"doi":"10.1038/s41598-026-63349-7","english_title":"TrafCopAgent: synergizing reinforcement learning and multi-agent collaboration for adaptive emergency traffic control","journal":"Scientific Reports","first_seen":"2026-08-02"}
+    {
+        "doi":  "10.1016/j.tranpol.2026.104299",
+        "english_title":  "Can Multimodal Transit Boost Urban Mobility Appeal? Evidence from Spatial Machine Learning",
+        "journal":  "Transport Policy",
+        "first_seen":  "2026-07-16"
+    },
+    {
+        "doi":  "10.1016/j.tranpol.2026.104297",
+        "english_title":  "Developing evaluation method for diverse intermodal transport hubs: A Data-Driven Indicator Selection Mechanism",
+        "journal":  "Transport Policy",
+        "first_seen":  "2026-07-16"
+    },
+    {
+        "doi":  "10.1016/j.scs.2026.107688",
+        "english_title":  "Strategic and Equitable Allocation of Electric Vehicle Fast Charging Stations using Geospatial-Aware Multi-Objective Deep Reinforcement Learning",
+        "journal":  "Sustainable Cities and Society",
+        "first_seen":  "2026-07-16"
+    },
+    {
+        "doi":  "10.1016/j.atech.2026.102383",
+        "english_title":  "Optimizing Fruit Transportation in Mountainous Orchards: A Mission Planning Method Using Cooperative Drone-Vehicle Systems",
+        "journal":  "Smart Agricultural Technology",
+        "first_seen":  "2026-07-16"
+    },
+    {
+        "doi":  "10.1016/j.cie.2026.112242",
+        "english_title":  "Train rescheduling and platforming in multi-direction shared track high-speed railway stations based on virtual track pre-allocation",
+        "journal":  "Computers \u0026 Industrial Engineering",
+        "first_seen":  "2026-07-16"
+    },
+    {
+        "doi":  "10.1049/itr2.70289",
+        "english_title":  "Collaborative Energy-Efficient Optimisation on Timetabling, Stop Planning and Train Speed Profile for Suburban Railway Lines Under Time-Dependent Passenger Demand",
+        "journal":  "IET Intelligent Transport Systems",
+        "first_seen":  "2026-07-17"
+    },
+    {
+        "doi":  "10.26599/HTRD.2025.9480085",
+        "english_title":  "Pavement deformation risk assessment in permafrost regions based on cone penetration test",
+        "journal":  "Journal of Highway and Transportation Research and Development (English Edition)",
+        "first_seen":  "2026-07-17"
+    },
+    {
+        "doi":  "10.1016/j.fraope.2026.100720",
+        "english_title":  "Adaptive Vehicle Counting Method Using YOLOv10 Integrated with BoostTrack at Symmetrical Traffic Light Intersections",
+        "journal":  "Frontiers of Architectural and Civil Engineering",
+        "first_seen":  "2026-07-25"
+    },
+    {
+        "doi":  "10.26599/COMMTR.2026.9640040",
+        "english_title":  "A Ship Weather Routing Framework Based on the Dual-Mode Deep Reinforcement Learning",
+        "journal":  "Communications in Transportation Research",
+        "first_seen":  "2026-07-25"
+    },
+    {
+        "doi":  "10.1038/s41598-026-63349-7",
+        "english_title":  "TrafCopAgent: synergizing reinforcement learning and multi-agent collaboration for adaptive emergency traffic control",
+        "journal":  "Scientific Reports",
+        "first_seen":  "2026-08-02"
+    },
+    {
+        "doi":  "10.1177/03611981261461485",
+        "english_title":  "Integrating Data-Driven and Model-Driven Approaches for Traffic-State Estimation in Data-Deficient Areas",
+        "journal":  "Transportation Research Record: Journal of the Transportation Research Board",
+        "first_seen":  "2026-08-09"
+    }
 ]
